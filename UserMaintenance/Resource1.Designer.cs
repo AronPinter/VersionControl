@@ -77,5 +77,14 @@ namespace UserMaintenance {
                 return ResourceManager.GetString("Last Name", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fájlba írás.
+        /// </summary>
+        internal static string To_File {
+            get {
+                return ResourceManager.GetString("To File", resourceCulture);
+            }
+        }
     }
 }

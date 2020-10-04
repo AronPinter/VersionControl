@@ -123,4 +123,7 @@
   <data name="Last Name" xml:space="preserve">
     <value>Keresztnév</value>
   </data>
+  <data name="To File" xml:space="preserve">
+    <value>Fájlba írás</value>
+  </data>
 </root>
