@@ -26,7 +26,7 @@ namespace UserMaintenance
             listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
             button2.Text = Resource1.To_File;
-
+            button3.Text = Resource1.Delete;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,6 +39,11 @@ namespace UserMaintenance
         private void button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog savefiledialog1 = new SaveFileDialog();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
 
         }
     }
