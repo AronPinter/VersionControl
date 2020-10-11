@@ -57,6 +57,9 @@ namespace VIF5G3_week04
         }
         private void CreateTable()
         {
+            int lastRowID = x1Sheet.UsedRange.Rows.Count;
+            int lastColumnID = x1Sheet.UsedRange.Columns.Count;
+
             string[] headers = new string[] 
             {"Kód",
             "Eladó",
@@ -99,6 +102,25 @@ namespace VIF5G3_week04
             x1Sheet.get_Range(
             GetCell(2, 1),
             GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+
+            Excel.Range headerRange = x1Sheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range tableRange = x1Sheet.get_Range(GetCell(1, 1), GetCell(lastRowID, lastColumnID));
+            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            Excel.Range firstColumnRange = x1Sheet.get_Range(GetCell(1, 1), GetCell(1, lastColumnID));
+            firstColumnRange.Font.Bold = true;
+            Excel.Range lastColumnRange = x1Sheet.get_Range(GetCell(1, lastColumnID), GetCell(lastRowID, lastColumnID));
+            lastColumnRange.Interior.Color = Color.LightGreen;
+            lastColumnRange.NumberFormat = "#,##0.00";
+
+
         }
         private string GetCell(int x, int y)
         {
