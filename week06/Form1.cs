@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using week06.Entities;
 using week06.MnbServiceReference;
 
@@ -17,6 +18,8 @@ namespace week06
         public Form1()
         {
             InitializeComponent();
+            
+
             var mnbService = new MNBArfolyamServiceSoapClient();
 
             var request = new GetExchangeRatesRequestBody()
@@ -31,8 +34,30 @@ namespace week06
             var result = response.GetExchangeRatesResult;
 
             dataGridView1.DataSource = Rates;
+            chartRateData.DataSource = Rates;
+
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement element in xml.DocumentElement )
+            {
+                var Rate = new RateData();
+                Rates.Add(Rate);
+
+                Rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                Rate.Currency = childElement.GetAttribute("curr");
+
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+                if (unit != 0)
+                    Rate.Value = value / unit;
+            }
+
         }
 
         BindingList<RateData> Rates = new BindingList<RateData>();
+        
     }
+       
 }
