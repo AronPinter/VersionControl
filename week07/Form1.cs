@@ -154,10 +154,14 @@ namespace week07
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog browse = new OpenFileDialog();
-            if (browse.ShowDialog() == DialogResult.OK) textBox1.Text = browse.FileName; Population = GetPopulation(textBox1.Text);
-            {
+            if (browse.ShowDialog() == DialogResult.OK) textBox1.Text = browse.FileName;
+            Population = GetPopulation(textBox1.Text);
+            
+        }
 
-            }
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
