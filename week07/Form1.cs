@@ -92,5 +92,7 @@ namespace week07
             return deathProbabilities;
         }
 
+        Random rng = new Random(125);
+
     }
 }
