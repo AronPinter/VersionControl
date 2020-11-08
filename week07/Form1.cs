@@ -20,10 +20,13 @@ namespace week07
             Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+        }
 
+        public void Simulation()
+        {
             for (int year = 2005; year <= 2024; year++)
             {
-               
+
                 for (int i = 0; i < Population.Count; i++)
                 {
                     SimStep(year, Population[i]);
@@ -143,5 +146,18 @@ namespace week07
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Simulation();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog browse = new OpenFileDialog();
+            if (browse.ShowDialog() == DialogResult.OK) textBox1.Text = browse.FileName; Population = GetPopulation(textBox1.Text);
+            {
+
+            }
+        }
     }
 }
